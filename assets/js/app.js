@@ -51,29 +51,30 @@ var validacionNum =function (e){
       if(e.length<2){
       return true ;}
     } else {
-      return false;
+        return this.nextElementSibling.nextElementSibling.innerText="*Este campo es obligatorio (Ingresar solo dígitos)" && false;
+      }
+      //return false;
     }
-  }
 
 // validacion de imput vacio
 var input = document.getElementsByClassName("imput-registro");
 var error=function(e){
-  if(this.value.trim().length==0){
-    this.value="";
-    this.nextElementSibling.nextElementSibling.innerText="*Este campo es obligatorio";
-  }else{
-
-    var correc = this.value.split(" ");
-    var datoMayus= "";
-    for(var a =0; a<correc.length;a++){
-    datoMayus += correc[a].charAt(0).toUpperCase() + correc[a].substring(1).toLowerCase() + " ";
+          if(this.value.trim().length==0){
+            this.value="";
+            this.nextElementSibling.nextElementSibling.innerText="*Este campo es obligatorio";
+          }
+            else{
+            var correc = this.value.split(" ");
+            var datoMayus= "";
+            for(var a =0; a<correc.length;a++){
+            datoMayus += correc[a].charAt(0).toUpperCase() + correc[a].substring(1).toLowerCase() + " ";
+            }
+              this.value = datoMayus;
+          }
+        }
+  for(var i in input){
+      input[i].onblur=error;
   }
-      this.value = datoMayus;
-  }
-}
-for(var i in input){
-  input[i].onblur=error;
-}
 
 //aplicacion de validacion
 var nombrePaciente= document.getElementById('nombre');
@@ -89,7 +90,7 @@ var ciudad= document.getElementById('ciudad');
 var pais= document.getElementById('pais');
   pais.onkeypress=validacionLetras;
 
-//funcion que ejecuta todo el codigo
+//funcion que se ejecuta al hacer click
   var boton = document.getElementById("boton");
    boton.addEventListener("click",function(){
       var nombrePaciente= document.getElementById('nombre').value;
@@ -99,14 +100,21 @@ var pais= document.getElementById('pais');
       var ciudad= document.getElementById('ciudad').value;
       var pais= document.getElementById('pais').value;
 
-      var pacienteActual = new Form(nombrePaciente,apellido,edad,genero,ciudad,pais)
-      var etiqueta1 = document.getElementById('divs');
-      var  div = document.createElement('div');
-      div.innerHTML = pacienteActual.mostrar();
-      console.log(pacienteActual.mostrar())
-      etiqueta1.appendChild(div)
-
-    //  document.getElementsByClassName("imput-registro").value='';
+      if(nombrePaciente.length !=0 && apellido.length!=0 && edad.length != 0 && genero.leng != 0 && ciudad.length != 0 && pais.length != 0 ){
+        var pacienteActual = new Form(nombrePaciente,apellido,edad,genero,ciudad,pais)
+        //lo comentado se usa para imprimir los datos en la misma pagina delformulario
+        /*var etiqueta1 = document.getElementById('divs');
+        var  div = document.createElement('div');
+        div.innerHTML = pacienteActual.mostrar();
+        console.log(pacienteActual.mostrar())
+        etiqueta1.appendChild(div)*/
+        //para usar la informacion en varias paginas
+        localStorage.setItem("nuevoPaciente",JSON.stringify(pacienteActual));
+        document.getElementById("miForm").reset();
+        window.location="paciente.html";
+      } else {
+          alert("Ingresar datos completos");
+      }
     });
     //estructura que se imprime
   function Form(nombre,apellido,edad,genero,ciudad,pais){
