@@ -19,29 +19,3 @@ label {
   width: 90px;
   display: inline-block;
 }
-
-input#boton{
-  width: 130px;
-  text-align: center;
-  display: inline-block;
-  margin: auto 50px auto 70px;
-}
-
-div{
-  display: block;
-  text-align: left;
-  margin: 5px 0 5px 15px;
-}
-span{
-  font-size: xx-small;
-  margin: 2px auto 5px auto;
-  color:hsl(8, 94%, 50%);
-  display: inline-block;
-}
-
-div#Hola-Paciente{
-display: block;
-text-align: left;
-margin: 5px 0 5px 15px;
-color: darkgrey;
-}

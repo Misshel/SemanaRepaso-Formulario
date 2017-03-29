@@ -7,7 +7,6 @@ window.onload=function () {
   var pais= document.getElementById('pais-Paciente');
   //obtengo el objeto del idex.html
   var objetoPaciente= JSON.parse(localStorage.getItem("nuevoPaciente"));
-  console.log(objetoPaciente);
 
   nombrePaciente.innerText=objetoPaciente.nombre;
   apellido.innerText=objetoPaciente.apellido;
@@ -16,6 +15,17 @@ window.onload=function () {
   ciudad.innerText=objetoPaciente.ciudad;
   pais.innerText=objetoPaciente.pais;
 
-console.log(objetoPaciente.nombre);
+  console.log(objetoPaciente);
+  function Paciente(nombrePaciente, apellidoPaciente, edadPaciente, generoPaciente,ciudadPaciente,paisPaciente) {
+		this.nombre = nombrePaciente;
+		this.apellido = apellidoPaciente;
+		this.edad = edadPaciente;
+		this.genero = generoPaciente;
+		this.ciudad = ciudadPaciente;
+		this.pais = paisPaciente;
+	};
 
-}
+	document.getElementById("Editar").addEventListener("click",function(){
+		window.location="editar.html";
+	});
+};

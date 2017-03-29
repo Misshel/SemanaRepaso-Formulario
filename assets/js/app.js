@@ -51,7 +51,7 @@ var validacionNum =function (e){
       if(e.length<2){
       return true ;}
     } else {
-        return this.nextElementSibling.nextElementSibling.innerText="*Este campo es obligatorio (Ingresar solo dígitos)" && false;
+        return false;
       }
       //return false;
     }
@@ -78,7 +78,7 @@ var error=function(e){
 
 //aplicacion de validacion
 var nombrePaciente= document.getElementById('nombre');
-  nombre.onkeypress=validacionLetras;
+  nombrePaciente.onkeypress=validacionLetras;
 var apellido= document.getElementById('apellido');
   apellido.onkeypress=validacionLetras;
 var edad= document.getElementById('edad');
